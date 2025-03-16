@@ -1,0 +1,8 @@
+services:
+    database:
+        image: 'mysql:latest'
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: friendevent
+        ports:
+            - '3306'
