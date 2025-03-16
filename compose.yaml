@@ -1,8 +1,23 @@
 services:
+    backend:
+        container_name: friendeventbackend
+        build: .
+        ports:
+            - '8081:80'
+        depends_on:
+            - database
     database:
+        container_name: friendeventdatabase
         image: 'mysql:latest'
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: friendevent
         ports:
             - '3306'
+        volumes:
+            - 'mysql_data:/var/lib/mysql'
+        restart: always
+
+volumes:
+    mysql_data:
+
