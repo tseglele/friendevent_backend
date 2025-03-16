@@ -2,9 +2,57 @@
 
 {% block title %}Friend Event{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #e2e2e2;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-    <h1>Friend Event</h1>
-    <p>Welcome {{ app.user ? app.user.pseudo : "" }} to the Friend Event application. This application allows you to create events and invite your friends to them.</p>
-    <p>Click <a href="{{ path('app_event_index') }}">here</a> to view the list of events.</p>
-    <p>Click <a href="{{ path('app_event_new') }}">here</a> to create a new event.</p>
+    <div class="container">
+        <div class="hero">
+            <h1>Friend Event</h1>
+            <p>Welcome {{ app.user ? app.user.pseudo : "Guest" }} to the Friend Event application.</p>
+        </div>
+        <p>This application allows you to create events and invite your friends to them. Whether it's a birthday party, a casual get-together, or a professional meeting, Friend Event makes it easy to organize and manage your events.</p>
+        <p>Get started by exploring the options below:</p>
+        <p><a class="btn" href="{{ path('app_event_index') }}">View Events</a></p>
+        <p><a class="btn" href="{{ path('app_event_new') }}">Create New Event</a></p>
+    </div>
 {% endblock %}

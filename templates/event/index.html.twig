@@ -2,6 +2,51 @@
 
 {% block title %}Event index{% endblock %}
 
+{% block stylesheets %}
+    <style>
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .table th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .table tr:hover {
+            background-color: #ddd;
+        }
+        .table a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .table a:hover {
+            text-decoration: underline;
+        }
+        .table .actions, .table .participation {
+            text-align: center;
+        }
+        .create-new {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .create-new:hover {
+            background-color: #0056b3;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <h1>Event index</h1>
 
@@ -12,8 +57,8 @@
                 <th>Name</th>
                 <th>Date</th>
                 <th>User</th>
-                <th>actions</th>
-                <th>participation</th>
+                <th class="actions">Actions</th>
+                <th class="participation">Participation</th>
             </tr>
         </thead>
         <tbody>
@@ -23,21 +68,21 @@
                 <td>{{ event.name }}</td>
                 <td>{{ event.date ? event.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ event.user.pseudo }}</td>
-                <td>
+                <td class="actions">
                     <a href="{{ path('app_event_show', {'id': event.id}) }}">show</a>
                     <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
                 </td>
-                <td>
+                <td class="participation">
                     <a href="{{ path('app_event_register', {'id': event.id}) }}">participate</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_event_new') }}">Create new</a>
+    <a href="{{ path('app_event_new') }}" class="create-new">Create new</a>
 {% endblock %}
