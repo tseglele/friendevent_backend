@@ -39,11 +39,14 @@
 <nav>
     <ul>
         <li><a href="/">FriendEvent</a></li>
-        <li><a href="/register">Register</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/logout">Logout</a></li>
-        <li><a href="/profile">My Profile</a></li>
         <li><a href="/event">All Events</a></li>
-        <li><a href="/participation">All participations</a></li>
+        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Login</a></li>
+        {% endif %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li><a href="/participation">All participations</a></li>
+            <li><a href="/logout">Logout</a></li>
+        {% endif %}
     </ul>
 </nav>
