@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Friend Event</h1>
-    <p>Welcome to the Friend Event application. This application allows you to create events and invite your friends to them.</p>
+    <p>Welcome {{ app.user ? app.user.pseudo : "" }} to the Friend Event application. This application allows you to create events and invite your friends to them.</p>
     <p>Click <a href="{{ path('app_event_index') }}">here</a> to view the list of events.</p>
     <p>Click <a href="{{ path('app_event_new') }}">here</a> to create a new event.</p>
 {% endblock %}

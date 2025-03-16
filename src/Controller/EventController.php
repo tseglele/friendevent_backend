@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\Participation;
 use App\Form\EventType;
 use App\Repository\EventRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -77,5 +79,19 @@ final class EventController extends AbstractController
         }
 
         return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/register', name: 'app_event_register', methods: ['GET'])]
+    public function register(EventRepository $event_repository, UserRepository $user_repository, EntityManagerInterface $entityManager): Response
+    {
+        $newEvent = $event_repository->find(1);
+        $newUser = $this->getUser();
+        $newParticipation = new Participation();
+        $newParticipation->setEvent($newEvent);
+        $newParticipation->setUser($newUser);
+        $entityManager->persist($newParticipation);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_event_index');
     }
 }

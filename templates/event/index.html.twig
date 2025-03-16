@@ -13,6 +13,7 @@
                 <th>Date</th>
                 <th>User</th>
                 <th>actions</th>
+                <th>participation</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,9 @@
                 <td>
                     <a href="{{ path('app_event_show', {'id': event.id}) }}">show</a>
                     <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
+                </td>
+                <td>
+                    <a href="{{ path('app_event_register', {'id': event.id}) }}">participate</a>
                 </td>
             </tr>
         {% else %}
