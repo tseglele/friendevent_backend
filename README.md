@@ -46,6 +46,7 @@ symfony server:start
 ```
 
 ## All routes
+```
 /
 /register
 /login
@@ -60,6 +61,7 @@ symfony server:start
 /participation/{id}
 /participation/{id}/edit
 /participation/{id}/register
+```
 
 ## Running Tests
 
