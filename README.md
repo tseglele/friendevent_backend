@@ -63,6 +63,15 @@ symfony server:start
 /participation/{id}/register
 ```
 
+## How to use the API
+
+After Register and create an event, go to /api
+Perform a request from API plateform
+Try this command on your terminal
+```
+curl -X 'GET' 'http://127.0.0.1:8000/api/events?page=1' -H 'accept: application/ld+json'
+```
+
 ## Running Tests
 
 To run the tests, execute:
