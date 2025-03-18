@@ -10,7 +10,7 @@ Before you begin, ensure you have met the following requirements:
 - You have installed Symfony CLI
 - You have a running instance of a MySQL database
 
-## Installation
+## How to run the project
 
 1. Clone the repository:
     ```bash
@@ -77,6 +77,25 @@ curl -X 'GET' 'http://127.0.0.1:8000/api/events?page=1' -H 'accept: application/
 To run the tests, execute:
 ```bash
 php bin/phpunit
+```
+
+# Run the project with Docker
+
+Modifier la connection string dans le fichier .env
+DATABASE_URL="mysql://root:root@friendeventbackend-database-1/friendevent?serverVersion=8.0.32&charset=utf8mb4"
+
+```
+docker-compose up
+sudo docker exec -it friendeventbackend-backend-1 bash
+cd project
+php bin/console doctrine:migrations:migrate
+```
+
+# Remove the container, image and volumes
+```
+sudo docker-compose down
+sudo docker image rm friendeventbackend-backend
+sudo docker volume rm friendeventbackend_mysql_data
 ```
 
 ## Contributing
